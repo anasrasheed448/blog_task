@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:blog_task/constants/style.dart';
 import 'package:blog_task/controllers/auth_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -11,19 +10,19 @@ import 'package:provider/provider.dart';
 import 'custom_btn.dart';
 
 class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
+
   @override
   _LoginFormState createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
-  Map<String, String> _formData = {
+  final Map<String, String> _formData = {
     "email": "",
     "password": "",
   };
-  final _passwordController = TextEditingController();
-  final _emailController = TextEditingController();
 
-  GlobalKey<FormState> _formKey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey();
   bool _buttonPressed = false;
   @override
   Widget build(BuildContext context) {
@@ -118,15 +117,16 @@ class _LoginFormState extends State<LoginForm> {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
         if (_formData['email'] == '') return customSnackBar('Email is Empty');
-        if (_formData['password'] == '')
+        if (_formData['password'] == '') {
           return customSnackBar('Password is Empty');
+        }
         setState(() {
           _buttonPressed = !_buttonPressed;
         });
         if (9 == 2) {
         } else {
           // var login =
-          final res =
+          
               await Provider.of<AuthController>(context, listen: false).login(
             _formData['email'].toString(),
             _formData['password'].toString(),
@@ -160,12 +160,13 @@ class _LoginFormState extends State<LoginForm> {
 }
 
 String? validate(String value) {
-  if (value == "")
+  if (value == "") {
     return "fields are empty";
-  else if (value.length < 6)
+  } else if (value.length < 6) {
     return "Email or Password Incorrect";
-  else
+  } else {
     return null;
+  }
 }
 
 customSnackBar(m) => Get.snackbar('', m, backgroundColor: Colors.white38);

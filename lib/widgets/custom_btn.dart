@@ -16,15 +16,15 @@ class CustomBtn extends StatelessWidget {
         onPressed: onPressed,
         child: Text(text.toUpperCase()),
         style: ElevatedButton.styleFrom(
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
               letterSpacing: 2,
             ),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            primary: Color(0xff112031),
-            padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20)),
+            primary: const Color(0xff112031),
+            padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20)),
       ),
     );
   }

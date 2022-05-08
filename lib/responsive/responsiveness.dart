@@ -25,11 +25,13 @@ class Responsiveness extends StatelessWidget {
       builder: (_, constraints) {
         double _width = constraints.maxWidth;
         print(_width);
-        if (_width >= largeScreenSize)
+        if (_width >= largeScreenSize) {
           return largeScreen;
-        else if (_width < largeScreenSize && _width >= mediumScreenSize)
+        } else if (_width < largeScreenSize && _width >= mediumScreenSize) {
           return mediumScreen ;
-        else return smallScreen;
+        } else {
+          return smallScreen;
+        }
       },
     );
   }
